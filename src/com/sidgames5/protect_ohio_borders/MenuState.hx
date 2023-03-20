@@ -2,8 +2,10 @@ package com.sidgames5.protect_ohio_borders;
 
 import flixel.FlxState;
 
-class PlayState extends FlxState
+class MenuState extends FlxState
 {
+	private static var title:FlxText;
+	
 	override public function create()
 	{
 		super.create();
