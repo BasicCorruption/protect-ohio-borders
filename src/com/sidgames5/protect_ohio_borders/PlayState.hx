@@ -18,6 +18,8 @@ class PlayState extends FlxState
 	// Game Parameters
 	private static var score:Int = 0;
 	private static var level:Int = 1;
+	private static var upperBound:Int = FlxG.height*(1/4);
+	private static var lowerBound:Int = FlxG.height*(3/4);
 	
 	override public function create()
 	{
@@ -44,6 +46,7 @@ class PlayState extends FlxState
 		super.update(dt);
 		
 		// Update Player stuff
+		if (player.isOnScreen || weapon.isOnScreen) {
 		if (FlxG.keys.pressed.LEFT || FlxG.keys.pressed.A) {
 			player.x-=player.speed;
 		}
@@ -55,6 +58,7 @@ class PlayState extends FlxState
 		}
 		if (FlxG.keys.pressed.DOWN || FlxG.keys.pressed.S) {
 			player.y+=player.speed;
+		}
 		}
 		weapon.attach(player);
 		
@@ -75,5 +79,11 @@ class PlayState extends FlxState
 			case RANGED:
 				// Shoot out a projectile and only deduct health if the projectile hits the target
 		}
+	}
+	private static function resetResident(sprite:Resident) {
+		sprite.x = 0 - (sprite.width/2);
+		var a = Math.random() * (upperBound-lowerBound);
+		var b = Math.abs(a - sprite.height);
+		sprite.y = b + lowerBound;
 	}
 }
