@@ -5,10 +5,10 @@ import flixel.FlxState;
 class PlayState extends FlxState
 {
 	private static var border:FlxSprite;
-	private static var player:FlxSprite;
+	private static var player:Player;
 	private static var weapon:Weapon;
 	
-	//private static var escapees:Array<;
+	private static var residents:Array<Resident> = [];
 	
 	override public function create()
 	{
