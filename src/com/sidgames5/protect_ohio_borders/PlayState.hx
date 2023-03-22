@@ -62,6 +62,14 @@ class PlayState extends FlxState
 		}
 		weapon.attach(player);
 		
+		// Borders
+		if (resident1.x > FlxG.width*(3/4)) {
+			resetResident(resident1);
+		}
+		if (resident2.x > FlxG.width*(3/4)) {
+			resetResident(resident2);
+		}
+		
 		// Weapon Interactions
 		switch (weapon.interactionType) {
 			case MELEE:
@@ -74,7 +82,6 @@ class PlayState extends FlxState
 				if (FlxG.mouse.overlaps(resident2) && FlxG.mouse.justPressed) {
 					resident2.health-=weapon.damage;
 					score+=level;
-					// TODO: Rotate weapon when attacking
 				}
 			case RANGED:
 				// Shoot out a projectile and only deduct health if the projectile hits the target
